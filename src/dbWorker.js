@@ -3,19 +3,26 @@ const admin = require("firebase-admin");
 
 //firebase credentials
 let firebaseConfig = {
-    apiKey: "XXX-XXXX-XXXX-XXX",
-    authDomain: "XXX-XXX-XXX-XXX",
-    databaseURL: "XXX-XXXX-XXXX-XXX",
-    projectId: "XXX-XXXX-XXXX-XXX",
-    storageBucket: "XXX-XXXX-XXXX-XXXX",
-    messagingSenderId: "XXX-XXXX-XXXX-XXXX",
-    appId: "XXX-XXXX-XXXX-XXXX"
+    apiKey: "AIzaSyDmbSDTnKYJLQHxGkSOwMWnuPtjUcPTYQo",
+    authDomain: "addresscrawler.firebaseapp.com",
+    databaseURL: "https://addresscrawler.firebaseio.com",
+    projectId: "addresscrawler",
+    storageBucket: "addresscrawler.appspot.com",
+    messagingSenderId: "593450046686",
+    appId: "1:593450046686:web:8adf133557b8718f455e4f",
+    measurementId: "G-GEH2VEEY42"
 };
 
 // Initialize Firebase
-admin.initializeApp(firebaseConfig);
-let db = admin.firestore();
 
+var serviceAccount = require("/Users/timaddai/Downloads/addresscrawler-firebase-adminsdk-lnmwg-da7336e8fc.json");
+console.log(serviceAccount)
+
+admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://addresscrawler.firebaseio.com"
+});
+let db = admin.firestore();
 // get current data in DD-MM-YYYY format
 let date = new Date();
 let currDate = `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`;
